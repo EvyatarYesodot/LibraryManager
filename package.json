@@ -11,10 +11,10 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@types/node": "^25.8.0",
-    "@types/random-words": "^1.1.4"
+    "@types/node": "^25.9.1"
   },
   "dependencies": {
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.6.2"
   }
 }
