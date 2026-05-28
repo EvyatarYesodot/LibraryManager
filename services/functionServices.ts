@@ -1,5 +1,5 @@
 import { createNewAuthor } from "../DAL/CRUDauthor.js";
-import { createNewBook, getBooksByAuthorName, searchBookByPagesNum } from "../DAL/CRUDbooks.js";
+import { createNewBook, getBooksByAuthorName, searchBookByPagesNum, searchBooksByText } from "../DAL/CRUDbooks.js";
 import { AuthorType } from "../models/Author.js";
 import { BookType } from "../models/Book.js";
 
@@ -43,5 +43,18 @@ export async function printBooksByNum(): Promise<void> {
     console.log(books);
   } catch (error) {
     console.error(`Error when printing books larger than 250 pages:`, error);
+  }
+}
+
+export async function printTextSearchResults(searchTerm: string): Promise<void> {
+  try {
+    const foundBooks = await searchBooksByText(searchTerm);
+    if (!foundBooks || foundBooks.length === 0) {
+      console.log(`No books were found matching the search phrase: "${searchTerm}"`);
+      return;
+    }
+    console.log(foundBooks);
+  } catch (error) {
+    console.error(`Error while printing search results: `, error);
   }
 }
