@@ -38,8 +38,7 @@ export async function searchBooksByText(searchTerm: string): Promise<BookType[] 
 export async function searchBookByPagesNum(pagesNum: number): Promise<BookType[] | undefined> {
   try {
     const resultSearch = await Book.find({
-      numberOfPages: { $gt: pagesNum },
-    }).lean();
+      numberOfPages: { $gt: pagesNum }}).sort({ numberOfPages: 1 }).lean();
     return resultSearch as BookType[];
   } catch (error) {
     console.error(`Error while searching for books by pages number`, error);
